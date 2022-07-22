@@ -1,0 +1,231 @@
+@import "../../components/variables.scss";
+
+.maincon {
+  //background-image: linear-gradient($lightdark,70%,$dark);
+  background-image: radial-gradient(circle at 0% 0%, #373b52, #252736 51%, #1d1e26);
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation: blur 2s;
+
+  .filter {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: #1819229f;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: load 1s;
+
+    h1 {
+      text-align: center;
+      color: $light;
+      font-size: $bigtext;
+      font-family: $main;
+    }
+
+    .cmd {
+      background-color: $dark;
+      width: 35vw;
+      height: 35vh;
+      display: inline;
+      border: solid 1px #919191;
+      overflow: hidden;
+
+      &_bar {
+        height: 7%;
+        width: 35vw;
+        background-color: #303030;
+
+        ul {
+          float: right;
+          background: none;
+          padding: 0;
+          margin: 0;
+          display: flex;
+          flex-direction: row;
+          height: 100%;
+
+          li {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            width: 3vw;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: $light;
+            background-color: #303030;
+            transition: 0.2s;
+
+            &:hover {
+              background-color: #4b4b4b;
+            }
+
+            &:last-child {
+              &:hover {
+                background-color: #ff0000;
+              }
+            }
+          }
+        }
+      }
+
+      &_text {
+        padding: 0;
+        margin: 0;
+        border: none;
+        width: 35vw;
+        height: 100%;
+        background-color: $dark;
+        resize: none;
+        overflow-y: scroll;
+        outline: none;
+        color: $light;
+        padding: 5px;
+
+        &::-webkit-scrollbar {
+          background-color: #161616;
+        }
+      }
+    }
+  }
+
+  .intro {
+    position: absolute;
+    top: 5vh;
+    background-color: #181922;
+    height: 10vh;
+    width: 50vw;
+    min-width: fit-content;
+    min-height: fit-content;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    h1 {
+      margin: 0;
+      text-align: center;
+      font-size: $bigtext*1.5;
+      color: grey;
+      font-family: $main;
+    }
+  }
+
+  .content {
+    width: 50vw;
+    min-width: 700px;
+    max-width: 900px;
+    height: 50vh;
+    max-height: 500px;
+    background-image: radial-gradient(circle at 0% 0%, #eb67eb, #d67777 51%, #fffd80);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    row-gap: 10px;
+
+    .searchbarCon {
+      width: 35vw;
+      max-width: 400px;
+      border-bottom: 2px $light solid;
+      height: 30%;
+      opacity: 0.8;
+      display: flex;
+      align-items: flex-end;
+      padding-left: 10px;
+      padding-right: 10px;
+
+      input {
+        width: 89%;
+        border: none;
+        border-radius: 0px;
+        overflow: hidden;
+        font-size: $smalltext;
+        color: $light;
+        font-family: $main;
+        font-weight: 600;
+        background: transparent;
+        outline: none;
+
+        &::placeholder {
+          color: #373b52;
+        }
+      }
+
+      button {
+        overflow: hidden;
+        width: 10%;
+        background: transparent;
+        outline: none;
+        border: none;
+        padding: 0;
+        border-left: solid 2px $light;
+
+        .icon {
+          width: 30px;
+          height: 30px;
+          color: $light;
+          transition: 0.3s;
+        }
+
+        &:hover .icon {
+          color: #373b52;
+        }
+      }
+    }
+
+    .resultsCon {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      align-items: flex-end;
+
+      .result {
+        margin-bottom: 10px;
+        width: 100%;
+        height: 70%;
+        border-right: $light 3px solid;
+
+        h1 {
+          text-align: center;
+          color: $light;
+          font-family: $main;
+          font-size: $mediumtext;
+        }
+
+        p {
+          width: 90%;
+          text-align: center;
+          color: $light;
+          font-family: $main;
+          font-size: $smalltext;
+          font-weight: 600;
+        }
+
+        &:last-child {
+          border: none;
+        }
+      }
+    }
+  }
+
+}
+
+@keyframes load {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
