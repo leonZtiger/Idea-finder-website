@@ -58,11 +58,11 @@ public class Search {
 		}
 
 	}
-
+    
 	public void calcResults() {
 
 	}
-
+    //returns the average originality score 
 	static String getOriginality() {
 		String temp = (org / i) + "";
 		temp.substring(3, temp.length());

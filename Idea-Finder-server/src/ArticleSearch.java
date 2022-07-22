@@ -1,8 +1,4 @@
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
 
 import org.jsoup.Jsoup;
@@ -28,8 +24,8 @@ public class ArticleSearch extends Thread {
 
 		int termCount = 0;
 		// arraylist for counting spaces between all the terms
-		ArrayList<Integer> termSpace = new ArrayList<Integer>();
-		int space = 0;
+	    //	ArrayList<Integer> termSpace = new ArrayList<Integer>();
+		//int space = 0;
 
 		try {
 			// post GET-request to the url
@@ -52,49 +48,36 @@ public class ArticleSearch extends Thread {
 
 						if (s.hasWordInIt(word, terms[i]) && terms[i].length() > 2) {
 							termsCount[i]++;
-							termSpace.add(space);
-							space = 0;
+					//		termSpace.add(space);
+					//		space = 0;
 						}
 					}
 					// else compare the term and word directly
 					else if (word.toLowerCase().trim().equals(terms[i].toLowerCase())) {
 						termsCount[i]++;
-						termSpace.add(space);
-						space = 0;
+					//	termSpace.add(space);
+					//	space = 0;
 					}
-				space++;
+			//	space++;
 			}
 			// calculate the originality
 
+			// total percentage of the terms in the text
 			double totTermPer = 0;
 
 			for (int i = 0; i < termsCount.length; i++) {
+				// termsCount[i] *= 100;
 				termsCount[i] /= words.length;
 				totTermPer += termsCount[i];
 			}
+			/*
+			 * right now i don't have a good algorithm for this, so i just return the total
+			 * percentage of which the search terms since more often == less original.
+			 * please contribute your ideas on how to give a better result :)
+			 */
+			double org = 100 - totTermPer;
+			Search.addOrg(org);
 
-			if (termSpace.size() != 0 && totTermPer < 50) {
-
-				int totRel = 0;
-				int maxRel = 100 / termsCount.length;
-
-				for (int i = 0; i < termsCount.length; i++) {
-					termsCount[i] /= totTermPer;
-					totRel *= (termsCount[i]) * maxRel;
-				}
-
-				double avg = 0;
-				for (int i : termSpace) {
-					avg += i;
-				}
-				avg = avg / termSpace.size();
-
-				double org = 100 - totTermPer;
-				Search.addOrg(org);
-
-			} else {
-				Search.addOrg(10);
-			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
