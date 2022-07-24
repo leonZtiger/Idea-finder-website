@@ -1,5 +1,5 @@
 # Idea-finder-website
-a website that estimates the originality of a idea
+a website that estimates the originality of an idea
 
 this project is using a java server and a react-app.
 
